@@ -1,8 +1,9 @@
 let gulp = require('gulp');
 let browserSync = require('browser-sync');
 let karma = require('karma').server;
+let server = require('gulp-live-server');
 
-gulp.task('serve', function() {
+gulp.task('serve', ['server'], function() {
     browserSync.init({
         notify: false,
         port: 8080,
@@ -16,6 +17,11 @@ gulp.task('serve', function() {
 
     gulp.watch(['app/**/*.*'])
         .on('change', browserSync.reload);
+});
+
+gulp.task('server', function() {
+    let live = new server('server.js');
+    live.start();
 });
 
 gulp.task('test-browser',function(done){
