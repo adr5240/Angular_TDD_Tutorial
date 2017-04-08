@@ -25,13 +25,13 @@ gulp.task('server', function() {
 });
 
 gulp.task('test-browser',function(done){
-    return karma.start({
+    karma.start({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true,
-		reporters:['mocha'],
-    }, function(){
-		done();
-	});
+		reporters:['mocha', 'coverage'],
+    }, function() {
+        done();
+    });
 });
 
 gulp.task('serve-test', function() {
@@ -43,6 +43,19 @@ gulp.task('serve-test', function() {
             routes: {
                 '/bower_components': 'bower_components'
             }
+        }
+    });
+
+    gulp.watch(['app/**/*.*'])
+        .on('change', browserSync.reload);
+});
+
+gulp.task('serve-coverage', ['test-browser'],  function() {
+    browserSync.init({
+        notify: false,
+        port: 7777,
+        server: {
+            baseDir: ["test/coverage"]
         }
     });
 

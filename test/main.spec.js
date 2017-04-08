@@ -1,5 +1,5 @@
-let assert = chai.assert;
-let expect = chai.expect;
+var assert = chai.assert;
+var expect = chai.expect;
 
 describe("The AddressBook App", function() {
 
@@ -72,9 +72,9 @@ describe("The AddressBook App", function() {
         it("should display the capitalized first letter of the contact name", function() {
             inject(function($rootScope, $compile) {
                 $rootScope.contact = { name: 'jon arryn' };
-                let element = $compile('<avatar name=contact.name/>')($rootScope);
+                var element = $compile('<avatar name=contact.name/>')($rootScope);
                 $rootScope.$digest();
-                let dirText = element.text();
+                var dirText = element.text();
 
                 expect(dirText).to.equal("J");
             });

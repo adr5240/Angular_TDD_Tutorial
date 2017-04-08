@@ -1,6 +1,6 @@
 angular.module('AddressBook', [])
     .service("contactService", function($http) {
-        let contactService = this;
+        var contactService = this;
         contactService.contacts = [];
 
         $http.get("http://localhost:9000/contacts")
@@ -17,7 +17,7 @@ angular.module('AddressBook', [])
 
     .filter("proper", function() {
         return function(name) {
-            let type = typeof(name);
+            var type = typeof(name);
 
             if (type !== 'number' && type !== 'string') throw new Error();
 
