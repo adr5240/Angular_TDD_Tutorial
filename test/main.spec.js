@@ -17,7 +17,7 @@ describe("The AddressBook App", function() {
         });
 
         it("should call the http backend", function() {
-            $httpBackend.expectGET("http://localhost:9000/contacts")
+            $httpBackend.expectGET("http://localhost:9001/contacts")
                 .respond(200, []);
             $httpBackend.flush();
         });
