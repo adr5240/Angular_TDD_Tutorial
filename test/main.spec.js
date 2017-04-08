@@ -4,7 +4,6 @@ let expect = chai.expect;
 describe("The AddressBook App", function() {
 
     describe("the contact service", function() {
-
         beforeEach(function() {
             module("AddressBook");
             inject(function($injector) {
@@ -22,6 +21,24 @@ describe("The AddressBook App", function() {
                 .respond(200, []);
             $httpBackend.flush();
         });
+    });
+
+    describe("the contact controller", function() {
+        beforeEach(function() {
+            module("AddressBook");
+            inject(function($injector, $rootScope) {
+                $scope = $rootScope.$new();
+                contactService = $injector.get("contactService");
+                $httpBackend = $injector.get("$httpBackend");
+                $controller = $injector.get("$controller");
+            });
+        });
+
+        it("should store array of contacts in scope", function() {
+            $controller("ContactCtrl", { $scope:$scope, contactService:contactService });
+            assert.isArray($scope.contacts);
+        });
+
     });
 
 });
