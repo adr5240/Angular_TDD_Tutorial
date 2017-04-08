@@ -64,4 +64,21 @@ describe("The AddressBook App", function() {
         });
     });
 
+    describe("the avatar", function() {
+        beforeEach(function() {
+            module("AddressBook");
+        });
+
+        it("should display the capitalized first letter of the contact name", function() {
+            inject(function($rootScope, $compile) {
+                $rootScope.contact = { name: 'jon arryn' };
+                let element = $compile('<avatar name=contact.name/>')($rootScope);
+                $rootScope.$digest();
+                let dirText = element.text();
+
+                expect(dirText).to.equal("J");
+            });
+        });
+    });
+
 });
