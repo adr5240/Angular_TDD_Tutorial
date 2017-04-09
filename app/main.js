@@ -9,10 +9,19 @@ angular.module('AddressBook', [])
                     contactService.contacts.push(res.data.pop());
                 }
         });
+
+        this.addContact = function(contact) {
+            contactService.contacts.push(contact);
+        };
     })
 
     .controller("ContactCtrl", function(contactService, $scope) {
         $scope.contacts = contactService.contacts;
+    })
+    .controller('AddContact', function($scope, contactService) {
+        $scope.addContact = function() {
+            contactService.addContact($scope.contact);
+        };
     })
 
     .filter("proper", function() {

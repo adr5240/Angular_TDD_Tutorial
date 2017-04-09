@@ -70,5 +70,5 @@ gulp.task('protractor', ['serve'], function(done) {
             configFile: 'test/protractor.config.js',
             args: ['--baseUrl', 'http://localhost:8000']
         }))
-    .on('end', done;
+    .on('end', done);
 });
